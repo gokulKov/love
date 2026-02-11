@@ -765,7 +765,7 @@ function LoveLetter5({ onComplete }) {
                 type="text"
                 onClick={handleInputClick}
                 readOnly
-                placeholder="Click here to see the answer..."
+                placeholder="Share your thoughts..."
                 className="w-full px-4 py-3 text-center rounded-lg border-2 transition-all duration-300 cursor-pointer hover:border-pink-400"
                 style={{
                   borderColor: '#f48fb1',
