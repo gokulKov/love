@@ -910,6 +910,73 @@ function App() {
   const [stage, setStage] = useState('tree'); // 'tree', 'envelope', 'letter', 'envelope2', 'letter2', 'envelope3', 'letter3', 'envelope4', 'letter4', 'envelope5', 'letter5', 'success'
   const [envelopeOpen, setEnvelopeOpen] = useState(false);
   const [noPosition, setNoPosition] = useState({ x: 140, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkDevice = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    
+    return () => window.removeEventListener('resize', checkDevice);
+  }, []);
+
+  // Show not supported message for mobile devices
+  if (isMobile) {
+    return (
+      <div 
+        className="h-screen w-screen flex items-center justify-center"
+        style={{ 
+          background: 'linear-gradient(180deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%)'
+        }}
+      >
+        <div 
+          className="bg-white rounded-lg shadow-2xl p-8 mx-4 text-center"
+          style={{
+            background: 'linear-gradient(135deg, #fff 0%, #fce4ec 100%)',
+            boxShadow: '0 20px 60px rgba(233, 30, 99, 0.3)',
+            maxWidth: '400px',
+          }}
+        >
+          <div className="mb-6">
+            <svg width="80" height="80" viewBox="-15 -15 30 30" className="mx-auto">
+              <path d={heartPath(28)} fill="#e91e63"/>
+            </svg>
+          </div>
+          
+          <h1 
+            className="text-2xl font-bold mb-4"
+            style={{ color: '#c2185b', fontFamily: 'Georgia, serif' }}
+          >
+            💻 Desktop Only 💻
+          </h1>
+          
+          <p 
+            className="text-lg mb-4"
+            style={{ color: '#ad1457', fontFamily: 'Georgia, serif', lineHeight: '1.6' }}
+          >
+            This experience is designed for laptop and desktop screens only.
+          </p>
+          
+          <p 
+            className="text-md"
+            style={{ color: '#e91e63', fontFamily: 'Georgia, serif' }}
+          >
+            Please open this site on a laptop or computer to enjoy the full experience! 💕
+          </p>
+          
+          <div className="mt-6 flex justify-center gap-2">
+            <span className="text-3xl">🖥️</span>
+            <span className="text-3xl">💝</span>
+            <span className="text-3xl">💻</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const handleEnter = () => {
     setStage('envelope');
