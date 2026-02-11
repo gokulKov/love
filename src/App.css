@@ -1,38 +1,120 @@
+/* Base styles */
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Animations */
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+@keyframes fade-in {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: scale(0.9);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-heart {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes envelope-open {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(180deg);
+  }
+}
+
+.animate-float-up {
+  animation: float-up 4s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 2s ease-in-out infinite;
+}
+
+.animate-pulse-heart {
+  animation: pulse-heart 1.5s ease-in-out infinite;
+}
+
+.envelope-flap-open {
+  animation: envelope-open 0.7s ease-out forwards;
+}
+
+/* Hover effects */
+.hover-grow:hover {
+  transform: scale(1.05);
+}
+
+/* Letter paper texture */
+.letter-paper {
+  background: linear-gradient(135deg, #fff 0%, #fce4ec 100%);
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,0.1),
+    0 8px 16px rgba(233, 30, 99, 0.2),
+    inset 0 0 80px rgba(248, 187, 208, 0.3);
+}
+
+/* Heart glow effect */
+.heart-glow {
+  filter: drop-shadow(0 0 8px rgba(233, 30, 99, 0.5));
+}
+
+/* Button styles */
+.btn-love {
+  background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
+  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-love:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(233, 30, 99, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .letter-content {
+    padding: 1.5rem;
+    width: 90vw;
+    max-width: 350px;
   }
 }
